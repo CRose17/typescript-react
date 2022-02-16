@@ -6,9 +6,16 @@ import "./styles.css";
 interface Props {
   todos: Todo[];
   setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
+  completedTodos: Todo[];
+  setCompletedTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
 }
 
-const TodoList: React.FC<Props> = ({ todos, setTodos }: Props) => {
+const TodoList: React.FC<Props> = ({
+  todos,
+  setTodos,
+  completedTodos,
+  setCompletedTodos
+}: Props) => {
   return (
     <div className="container">
       <div className="todos">
@@ -25,12 +32,12 @@ const TodoList: React.FC<Props> = ({ todos, setTodos }: Props) => {
       </div>
       <div className="todos remove">
         <span className="todos__heading">Completed Tasks</span>
-        {todos.map((todo) => (
+        {completedTodos.map((todo) => (
           <SingleTodo
             todo={todo}
-            todos={todos}
+            todos={completedTodos}
             key={todo.id}
-            setTodos={setTodos}
+            setTodos={setCompletedTodos}
           />
         ))}
         ;
